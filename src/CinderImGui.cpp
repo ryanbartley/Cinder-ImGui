@@ -472,7 +472,7 @@ void Renderer::initFontTexture()
 	unsigned char* pixels;
 	int width, height;
 	ImGui::GetIO().Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
-	mFontTexture = gl::Texture::create( pixels, GL_RGBA, width, height, gl::Texture::Format().magFilter(GL_LINEAR).minFilter(GL_LINEAR) );
+	mFontTexture = gl::Texture::create( pixels, width, height, gl::Texture::Format().dataFormat( GL_RGBA ).magFilter(GL_LINEAR).minFilter(GL_LINEAR) );
 	ImGui::GetIO().Fonts->ClearTexData();
 	ImGui::GetIO().Fonts->TexID = (void *)(intptr_t) mFontTexture->getId();
 }
