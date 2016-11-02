@@ -3,7 +3,10 @@ if( NOT TARGET Cinder-ImGui )
   get_filename_component( IMGUI_LIB_SOURCE_PATH "${CINDER_IMGUI_BLOCK_PATH}/lib/imgui" ABSOLUTE )
   get_filename_component( CINDER_IMGUI_INCLUDE_PATH "${CINDER_IMGUI_BLOCK_PATH}/include" ABSOLUTE )
   get_filename_component( CINDER_IMGUI_SRC_PATH "${CINDER_IMGUI_BLOCK_PATH}/src" ABSOLUTE )
-	get_filename_component( CINDER_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE )
+  
+  if( NOT EXISTS ${CINDER_PATH} )
+    get_filename_component( CINDER_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE )
+  endif()
 
   add_library( Cinder-ImGui 
     ${CINDER_IMGUI_SRC_PATH}/CinderImGui.cpp 
