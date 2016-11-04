@@ -15,7 +15,7 @@ if( NOT TARGET Cinder-ImGui )
     ${IMGUI_LIB_SOURCE_PATH}/imgui_demo.cpp 
   )
 
-  target_compile_options( Cinder-ImGui PUBLIC "-std=c++11" )
+  #target_compile_options( Cinder-ImGui PUBLIC "-std=c++11" )
 
   target_include_directories( Cinder-ImGui PUBLIC "${CINDER_IMGUI_INCLUDE_PATH}" )
   target_include_directories( Cinder-ImGui SYSTEM BEFORE PUBLIC "${IMGUI_LIB_SOURCE_PATH}" )
