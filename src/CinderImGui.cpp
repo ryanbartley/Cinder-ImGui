@@ -991,20 +991,18 @@ void initialize( const Options &options )
 
 void connectWindow( ci::app::WindowRef window )
 {
-	sWindowConnections = {
-		window->getSignalMouseDown().connect( mouseDown ),
-		window->getSignalMouseUp().connect( mouseUp ),
-		window->getSignalMouseDrag().connect( mouseDrag ),
-		window->getSignalMouseMove().connect( mouseMove ),
-		window->getSignalMouseWheel().connect( mouseWheel ),
-		window->getSignalKeyDown().connect( keyDown ),
-		window->getSignalKeyUp().connect( keyUp ),
-		window->getSignalResize().connect( resize ),
-	};
+	sWindowConnections.emplace_back( window->getSignalMouseDown().connect( mouseDown ) );
+	sWindowConnections.emplace_back( window->getSignalMouseUp().connect( mouseUp ) );
+	sWindowConnections.emplace_back( window->getSignalMouseDrag().connect( mouseDrag ) );
+	sWindowConnections.emplace_back( window->getSignalMouseMove().connect( mouseMove ) );
+	sWindowConnections.emplace_back( window->getSignalMouseWheel().connect( mouseWheel ) );
+	sWindowConnections.emplace_back( window->getSignalKeyDown().connect( keyDown ) );
+	sWindowConnections.emplace_back( window->getSignalKeyUp().connect( keyUp ) );
+	sWindowConnections.emplace_back( window->getSignalResize().connect( resize ) );
 }
 void disconnectWindow( ci::app::WindowRef window )
 {
-	for( auto connection : sWindowConnections ){
+	for( auto &connection : sWindowConnections ){
 		connection.disconnect();
 	}
 	sWindowConnections.clear();
