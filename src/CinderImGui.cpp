@@ -776,8 +776,11 @@ namespace {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		
+#if defined CINDER_LINUX
+		auto character = event.getChar();
+#else
 		uint32_t character = event.getCharUtf32();
-		
+#endif
 		io.KeysDown[event.getCode()] = true;
 		
 		if ( !event.isAccelDown() && character > 0 && character <= 255 ) {
